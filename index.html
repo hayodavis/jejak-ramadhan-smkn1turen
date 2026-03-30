@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jejak Ramadhan SMKN 1 Turen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya dasar Latar Belakang Web */
+        body {
+            background-color: #1e293b;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #334155 0%, #0f172a 100%);
+        }
+
+        /* Ukuran dan Bayangan Buku */
+        /* Panel Instruksi di area kosong kiri */
+        .instruction-panel {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 400px; /* Mengisi pas separuh kiri buku */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: -1; /* PENTING: Membuat petunjuk ini berada di 'meja' (belakang buku) */
+        }
+
+        .instruction-panel h3 {
+            color: #fbbf24; /* Warna Emas */
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .instruction-panel p.subtitle {
+            color: #a7f3d0;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .instruction-panel p.guide {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px dashed #475569;
+        }
+
+        /* Animasi panah bergerak ke kiri */
+        .swipe-icon {
+            font-size: 30px;
+            color: #fbbf24;
+            animation: swipeAnim 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes swipeAnim {
+            0% { transform: translateX(10px); }
+            100% { transform: translateX(-15px); }
+        }
+
+        .flip-book {
+            width: 800px;
+            height: 600px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        /* Gaya Halaman Dalam (Kertas Lembut) */
+        .page {
+            background-color: #fdfbf7;
+            border: 1px solid #e2e8f0;
+            padding: 40px;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Efek Lipatan Tengah Buku */
+        .page.--left { border-right: 0; box-shadow: inset -10px 0 40px -10px rgba(0,0,0,0.15); }
+        .page.--right { border-left: 0; box-shadow: inset 10px 0 40px -10px rgba(0,0,0,0.15); }
+
+        /* =========================================
+           COVER DEPAN & BELAKANG EKSKLUSIF (BARU)
+           ========================================= */
+        .cover {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            color: #ecfdf5;
+            text-align: center;
+        }
+
+        /* BINGKAI EMAS DI COVER (UNTUK COVER BELAKANG) */
+        .cover-inner {
+            border: 2px solid #fbbf24;
+            outline: 1px solid #fbbf24;
+            outline-offset: -6px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Tambahan CSS khusus untuk Cover Depan Gambar Penuh */
+        .page.full-cover {
+            padding: 0; /* Hapus padding agar gambar rata pinggir */
+            border: none; /* Hapus border agar terlihat bersih */
+            background-color: #064e3b; /* Fallback color */
+        }
+        
+        .full-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Gambar penuh tanpa distorsi */
+            display: block;
+        }
+
+        /* =========================================
+           KONTEN HALAMAN DALAM
+           ========================================= */
+        h2.title {
+            font-family: 'Playfair Display', serif;
+            color: #047857;
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 10px;
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #334155;
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        /* Area Gambar dengan Efek Frame Polaroid */
+        .image-placeholder {
+            background: #ffffff;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 15px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* Tombol Audio Premium */
+        button.play-audio {
+            background: linear-gradient(to right, #059669, #047857);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+        button.play-audio:hover {
+            background: linear-gradient(to right, #047857, #064e3b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(5, 150, 105, 0.4);
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: #94a3b8;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+        }
+        .page.--left .page-number { left: 25px; }
+        .page.--right .page-number { right: 25px; }
+    </style>
+</head>
+<body>
+
+<div class="flip-book" id="book">
+
+    <div class="instruction-panel">
+        <h3>Selamat Datang</h3>
+        <p class="subtitle">Di Buku Digital SMKN 1 Turen</p>
+        
+        <p class="guide">
+            👆<br>
+            <strong>Klik</strong> atau <strong>Tarik</strong> sudut kanan bawah gambar untuk membuka buku.
+        </p>
+        
+        <p class="guide">
+            🔊<br>
+            Nyalakan volume perangkat Anda untuk mendengarkan narasi di setiap halaman.
+        </p>
+        
+        <div class="swipe-icon">👈</div>
+    </div>
+
+    <div class="page cover full-cover" data-density="hard">
+        <img src="foto-cover-full.jpg" alt="Cover Premium Ramadhan Berdampak SMKN 1 Turen">
+    </div>
+
+    <div class="page">
+        <h2 class="title">Kata Pengantar</h2>
+        <p>Buku digital ini disusun sebagai bentuk partisipasi aktif keluarga besar <b>SMK Negeri 1 Turen</b> dalam menyukseskan program "Ramadhan Berdampak". Kami menyadari bahwa bulan suci Ramadhan adalah momentum emas untuk memperkuat nilai spiritual sekaligus membangun kepedulian sosial yang nyata.</p>
+        <p>Melalui literasi digital ini, kami berupaya mendokumentasikan berbagai praktik baik, mulai dari aktivitas ibadah hingga aksi sosial yang menebar manfaat dan memunculkan karakter positif bagi seluruh siswa.</p>
+        <audio id="audio1" src="suara1.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio1')">🔊 Dengarkan Pesan Pembuka</button>
+        <span class="page-number">1</span>
+    </div>
+
+    <div class="page">
+        <h2 class="title">Momentum Transformasi Diri</h2>
+        <p>Ramadhan 1447 H di SMKN 1 Turen bukan sekadar rutinitas ibadah, melainkan ruang pembelajaran untuk menumbuhkan iman dan kepedulian. Aktivitas religius diwujudkan melalui <b>Pondok Ramadhan</b> (bagi siswa muslim) dan <b>Pondok Kasih</b> (bagi siswa non-muslim) yang berlangsung pada 9 – 13 Maret 2026.</p>
+        <div class="image-placeholder">
+            <img src="foto1.jpg" alt="Kegiatan Pondok Ramadhan">
+        </div>
+        <audio id="audio2" src="suara2.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio2')">🔊 Makna Kegiatan</button>
+        <span class="page-number">2</span>
+    </div>
+
+    <div class="page">
+        <h2 class="title">Cinta Ibadah: Sholat Berjamaah</h2>
+        <p>Sholat berjamaah memiliki urgensi fundamental sebagai instrumen penguatan karakter. Secara pedagogis, aktivitas ini melatih kepatuhan hierarkis dan kohesi sosial yang tinggi, di mana perbedaan latar belakang disatukan dalam barisan saf yang setara. Ini adalah laboratorium kontekstual kedisiplinan.</p>
+        <div class="image-placeholder">
+            <img src="foto2.jpg" alt="Siswa Sholat Berjamaah">
+        </div>
+        <audio id="audio3" src="suara3.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio3')">🔊 Renungan Ibadah</button>
+        <span class="page-number">3</span>
+    </div>
+
+    <div class="page">
+        <h2 class="title">Cinta Al-Qur'an: Nuzulul Qur'an</h2>
+        <p>Peringatan Nuzulul Qur'an menjadi momentum krusial untuk memperkuat karakter spiritual peserta didik. Interaksi dengan Al-Qur'an tidak sekadar berhenti pada tilawah ritual, tetapi bertransformasi menjadi pedoman etika dan moral untuk mencetak generasi dengan kecerdasan spiritual yang tangguh.</p>
+        <div class="image-placeholder">
+            <img src="foto3.jpg" alt="Peringatan Nuzulul Qur'an">
+        </div>
+        <audio id="audio4" src="suara4.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio4')">🔊 Lentera Kehidupan</button>
+        <span class="page-number">4</span>
+    </div>
+
+    <div class="page">
+        <h2 class="title">Solidaritas: Zakat Fitrah</h2>
+        <p>Penyaluran Zakat Fitrah merupakan instrumen strategis mengejawantahkan keadilan sosial. Dirancang sebagai laboratorium karakter, siswa menginternalisasi empati terhadap realitas ekonomi masyarakat. Tata kelola yang transparan memastikan setiap zakat memberikan dampak nyata meringankan beban sesama.</p>
+        <div class="image-placeholder">
+            <img src="foto4.jpg" alt="Penyaluran Zakat Fitrah">
+        </div>
+        <audio id="audio5" src="suara5.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio5')">🔊 Harmoni Berbagi</button>
+        <span class="page-number">5</span>
+    </div>
+
+    <div class="page cover" data-density="hard">
+        <div class="cover-inner" style="justify-content: flex-start; padding-top: 50px;">
+            <h2 style="font-size: 26px; font-style: normal; font-family: 'Playfair Display', serif; color: #fbbf24;">Mari Berbagi Jejak</h2>
+            <div class="cover-divider" style="width: 60px; height: 3px; background-color: #fbbf24; margin: 10px auto 25px auto;"></div>
+
+            <p style="color: #ecfdf5; text-align: center; font-size: 13px; padding: 0 10px; font-family: 'Poppins', sans-serif;">
+                Karya ini masih jauh dari sempurna. Kami sangat mengharapkan umpan balik dan testimoni dari para pembaca.
+                Dukung inovasi siswa vokasi.
+            </p>
+
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(251, 191, 36, 0.3); padding: 15px 25px; border-radius: 8px; margin: 30px 0;">
+                <p style="color: #fbbf24; margin: 0; text-align: center; font-weight: 600; font-family: 'Poppins', sans-serif;">
+                    [Tautan Google Form Testimoni]
+                </p>
+            </div>
+
+            <div style="margin-top: auto; font-family: 'Poppins', sans-serif;">
+                <p style="font-size: 12px; line-height: 1.6; color: #a7f3d0; text-align: center;">
+                    Tim Penyusun SMK Negeri 1 Turen<br>Maret 2026
+                </p>
+                <p style="font-size: 10px; color: #6ee7b7; text-align: center; margin-top: 15px; opacity: 0.7;">
+                    @2026 Davis Rifandi
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const pageFlip = new St.PageFlip(document.getElementById('book'), {
+            width: 400, height: 600, size: "fixed",
+            minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
+            maxShadowOpacity: 0.6, showCover: true, mobileScrollSupport: false
+        });
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+    });
+
+    function putarAudio(idAudioBaru) {
+        const semuaAudio = document.querySelectorAll('audio');
+        semuaAudio.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        document.getElementById(idAudioBaru).play();
+    }
+</script>
+</body>
+</html>
