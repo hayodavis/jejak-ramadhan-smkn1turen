@@ -72,19 +72,21 @@
             color: #a7f3d0;
             font-size: 14px;
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
         }
 
         .instruction-panel p.guide {
             color: #94a3b8;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 12px;
             background: rgba(255, 255, 255, 0.05);
             padding: 10px 15px;
             border-radius: 8px;
             border: 1px dashed #475569;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Animasi panah bergerak ke kiri */
@@ -92,6 +94,7 @@
             font-size: 30px;
             color: #fbbf24;
             animation: swipeAnim 1.5s infinite alternate ease-in-out;
+            margin-top: 10px;
         }
 
         @keyframes swipeAnim {
@@ -255,6 +258,11 @@
             🔊<br>
             Nyalakan volume perangkat Anda untuk mendengarkan narasi di setiap halaman.
         </p>
+
+        <p class="guide">
+            🎵<br>
+            Klik tombol <strong>Putar Musik</strong> di pojok kanan atas untuk mengaktifkan musik latar.
+        </p>
         
         <div class="swipe-icon">👈</div>
     </div>
@@ -382,12 +390,10 @@
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
     });
 
-    // FUNGSI BARU: Mengontrol Play/Pause Background Music
     function toggleBGM() {
         const bgm = document.getElementById('bg-music');
         const btn = document.getElementById('bgm-btn');
         
-        // Atur volume BGM lebih pelan (20%) agar tidak menutupi suara Voice Over
         bgm.volume = 0.2; 
 
         if (bgm.paused) {
@@ -403,9 +409,7 @@
         }
     }
 
-    // FUNGSI DIPERBARUI: Agar BGM tidak ikut mati saat Voice Over diputar
     function putarAudio(idAudioBaru) {
-        // Hanya hentikan audio yang BUKAN Background Music
         const semuaAudio = document.querySelectorAll('audio:not(#bg-music)');
         
         semuaAudio.forEach(audio => {
@@ -413,15 +417,13 @@
             audio.currentTime = 0;
         });
 
-        // Hentikan video juga
         const semuaVideo = document.querySelectorAll('video');
         semuaVideo.forEach(video => {
             video.pause();
         });
 
-        // Putar Voice Over yang dipilih
         const vo = document.getElementById(idAudioBaru);
-        vo.volume = 1.0; // Pastikan Voice Over diset maksimal (100%)
+        vo.volume = 1.0; 
         vo.play();
     }
 </script>
