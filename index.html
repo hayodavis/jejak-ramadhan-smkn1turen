@@ -260,18 +260,17 @@
             font-size: 13px;
             color: #334155;
             font-weight: 600;
-            cursor: pointer; /* Mengubah kursor jadi telunjuk */
-            transition: all 0.2s ease; /* Animasi mulus */
+            cursor: pointer; 
+            transition: all 0.2s ease; 
             padding: 5px 0;
         }
         
-        /* Efek Hover saat Daftar Isi disentuh/dilewati kursor */
         .toc-item:hover {
-            color: #059669; /* Berubah jadi hijau */
-            transform: translateX(5px); /* Geser sedikit ke kanan */
+            color: #059669; 
+            transform: translateX(5px); 
         }
         .toc-item:hover .toc-page {
-            color: #f59e0b; /* Angka halaman jadi emas */
+            color: #f59e0b; 
         }
 
         .toc-title { padding-right: 5px; z-index: 1; pointer-events: none; }
@@ -551,7 +550,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
 <script>
-    // Membawa variabel pageFlip keluar agar bisa diakses fungsi lain
     let pageFlip;
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -562,17 +560,12 @@
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-        // Mencegah klik nyasar pada form belakang
-        const formElements = document.querySelectorAll('.form-input, .submit-btn');
+        // PENYELESAIAN BUG GESER (SWIPE):
+        // Kita hanya memblokir interaksi sentuh pada wadah form (form-wrapper)
+        // agar pengguna bisa mengetik tanpa membalik halaman secara tidak sengaja.
+        // Area Daftar Isi kita biarkan natural agar tetap bisa di-swipe.
+        const formElements = document.querySelectorAll('.form-wrapper');
         formElements.forEach(el => {
-            el.addEventListener('mousedown', (e) => e.stopPropagation());
-            el.addEventListener('touchstart', (e) => e.stopPropagation());
-            el.addEventListener('pointerdown', (e) => e.stopPropagation());
-        });
-        
-        // Mencegah klik pada daftar isi memicu buku membalik satu halaman saja secara tidak sengaja
-        const tocItems = document.querySelectorAll('.toc-item');
-        tocItems.forEach(el => {
             el.addEventListener('mousedown', (e) => e.stopPropagation());
             el.addEventListener('touchstart', (e) => e.stopPropagation());
             el.addEventListener('pointerdown', (e) => e.stopPropagation());
@@ -582,7 +575,6 @@
     // --- FUNGSI NAVIGASI DAFTAR ISI ---
     function bukaHalaman(indeksHalaman) {
         if (pageFlip) {
-            // Memaksa buku untuk membalik ke halaman spesifik
             pageFlip.flip(indeksHalaman);
         }
     }
@@ -620,7 +612,7 @@
         }
     }
 
-    // --- FUNGSI FORM TESTIMONI (TERHUBUNG KE GOOGLE SHEETS) ---
+    // --- FUNGSI FORM TESTIMONI ---
     function kirimTestimoni(event) {
         event.preventDefault(); 
         
