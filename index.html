@@ -109,7 +109,7 @@
         }
 
         /* =========================================
-           GAYA HALAMAN & ORNAMEN (BARU)
+           GAYA HALAMAN & ORNAMEN
            ========================================= */
         .page {
             background-color: #fdfbf7;
@@ -177,7 +177,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            /* Modifikasi padding agar bagian bawah tidak menabrak bingkai */
+            padding: 40px 20px 40px 20px; 
             box-sizing: border-box;
         }
 
@@ -207,7 +208,6 @@
             position: relative;
         }
         
-        /* Ornamen di bawah judul */
         h2.title::after {
             content: "✦ ✧ ✦";
             position: absolute;
@@ -243,7 +243,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
             position: relative;
-            z-index: 2; /* Agar di atas pola latar */
+            z-index: 2;
         }
         .image-placeholder img,
         .image-placeholder iframe,
@@ -269,24 +269,9 @@
             color: #334155;
             font-weight: 600;
         }
-        .toc-title {
-            padding-right: 5px;
-            z-index: 1;
-        }
-        .toc-page {
-            padding-left: 5px;
-            z-index: 1;
-            color: #047857;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-        }
-        .toc-dots {
-            flex-grow: 1;
-            border-bottom: 1px dotted #94a3b8;
-            margin: 0 5px;
-            position: relative;
-            top: -4px;
-        }
+        .toc-title { padding-right: 5px; z-index: 1; }
+        .toc-page { padding-left: 5px; z-index: 1; color: #047857; font-family: 'Playfair Display', serif; font-weight: bold; }
+        .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; }
 
         /* Tombol Audio Premium */
         button.play-audio {
@@ -321,6 +306,60 @@
         }
         .page.--left .page-number { left: 25px; }
         .page.--right .page-number { right: 25px; }
+
+        /* =========================================
+           STYLE FORM COVER BELAKANG (DIPERBAIKI)
+           ========================================= */
+        .form-wrapper {
+            /* Fix utama agar elemen di dalamnya bisa diklik */
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(251, 191, 36, 0.3); 
+            padding: 15px; 
+            border-radius: 8px; 
+            width: 100%; 
+            box-sizing: border-box;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            background: rgba(255,255,255,0.9);
+            box-sizing: border-box;
+            /* Penegasan agar bisa di-klik */
+            position: relative;
+            z-index: 101; 
+        }
+        
+        .form-input:focus {
+            outline: 2px solid #fbbf24;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #fbbf24, #f59e0b); 
+            color: #064e3b; 
+            font-weight: bold; 
+            border: none; 
+            padding: 10px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            width: 100%;
+            position: relative;
+            z-index: 101;
+            transition: all 0.2s ease;
+        }
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -334,22 +373,9 @@
     <div class="instruction-panel">
         <h3>Selamat Datang</h3>
         <p class="subtitle">Di Buku Digital SMKN 1 Turen</p>
-        
-        <p class="guide">
-            👆<br>
-            <strong>Klik</strong> atau <strong>Tarik</strong> sudut kanan bawah gambar untuk membuka buku.
-        </p>
-        
-        <p class="guide">
-            🔊<br>
-            Nyalakan volume perangkat Anda untuk mendengarkan narasi di setiap halaman.
-        </p>
-
-        <p class="guide">
-            🎵<br>
-            Klik tombol <strong>Putar Musik</strong> di pojok kanan atas untuk mengaktifkan musik latar.
-        </p>
-        
+        <p class="guide">👆<br><strong>Klik</strong> atau <strong>Tarik</strong> sudut kanan bawah gambar untuk membuka buku.</p>
+        <p class="guide">🔊<br>Nyalakan volume perangkat Anda untuk mendengarkan narasi di setiap halaman.</p>
+        <p class="guide">🎵<br>Klik tombol <strong>Putar Musik</strong> di pojok kanan atas untuk mengaktifkan musik latar.</p>
         <div class="swipe-icon">👈</div>
     </div>
 
@@ -369,56 +395,16 @@
     <div class="page">
         <h2 class="title">Daftar Isi</h2>
         <ul class="toc-list">
-            <li class="toc-item">
-                <span class="toc-title">Kata Pengantar</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">I</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Transformasi Diri</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">1</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Sholat Berjamaah</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">2</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Tadarus & Nuzulul Qur'an</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">3</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Zakat Fitrah</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">4</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Berbagi Takjil</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">5</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Santunan Yatim</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">6</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Pondok Kasih</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">7</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Renungan</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">8</span>
-            </li>
-            <li class="toc-item">
-                <span class="toc-title">Jejak Bergerak</span>
-                <span class="toc-dots"></span>
-                <span class="toc-page">9</span>
-            </li>
+            <li class="toc-item"><span class="toc-title">Kata Pengantar</span><span class="toc-dots"></span><span class="toc-page">I</span></li>
+            <li class="toc-item"><span class="toc-title">Transformasi Diri</span><span class="toc-dots"></span><span class="toc-page">1</span></li>
+            <li class="toc-item"><span class="toc-title">Sholat Berjamaah</span><span class="toc-dots"></span><span class="toc-page">2</span></li>
+            <li class="toc-item"><span class="toc-title">Tadarus & Nuzulul Qur'an</span><span class="toc-dots"></span><span class="toc-page">3</span></li>
+            <li class="toc-item"><span class="toc-title">Zakat Fitrah</span><span class="toc-dots"></span><span class="toc-page">4</span></li>
+            <li class="toc-item"><span class="toc-title">Berbagi Takjil</span><span class="toc-dots"></span><span class="toc-page">5</span></li>
+            <li class="toc-item"><span class="toc-title">Santunan Yatim</span><span class="toc-dots"></span><span class="toc-page">6</span></li>
+            <li class="toc-item"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
+            <li class="toc-item"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
+            <li class="toc-item"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
         </ul>
         <span class="page-number">II</span>
     </div>
@@ -516,7 +502,7 @@
         <p>Untuk melengkapi rekam jejak digital ini, saksikan sekilas potret semangat dan sinergi dari siswa-siswi SMK Negeri 1 Turen selama pelaksanaan program Pondok Ramadhan. Mari saksikan kolaborasi kami secara langsung.</p>
         
         <div class="image-placeholder" style="padding: 0; background: #000; border: none;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/G9pfgTBNIO0?si=mq3TCKk9EidNIcld" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 2px;"></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/G9pfgTBNIO0?si=mq3TCKk9EidNIcld" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 2px;"></iframe>
         </div>
         
         <audio id="audio11" src="jejak-bergerak.mp3"></audio>
@@ -525,26 +511,34 @@
     </div>
 
     <div class="page cover" data-density="hard">
-        <div class="cover-inner" style="justify-content: flex-start; padding-top: 50px;">
-            <h2 style="font-size: 26px; font-style: normal; font-family: 'Playfair Display', serif; color: #fbbf24;">Mari Berbagi Jejak</h2>
-            <div class="cover-divider" style="width: 60px; height: 3px; background-color: #fbbf24; margin: 10px auto 25px auto;"></div>
+        <div class="cover-inner">
+            <h2 style="font-size: 26px; font-style: normal; font-family: 'Playfair Display', serif; color: #fbbf24; margin-top: 0;">Mari Berbagi Jejak</h2>
+            <div class="cover-divider" style="width: 60px; height: 3px; background-color: #fbbf24; margin: 10px auto 15px auto;"></div>
 
-            <p style="color: #ecfdf5; text-align: center; font-size: 13px; padding: 0 10px; font-family: 'Poppins', sans-serif;">
-                Karya ini masih jauh dari sempurna. Kami sangat mengharapkan umpan balik dan testimoni dari para pembaca.
-                Dukung inovasi siswa vokasi.
+            <p style="color: #ecfdf5; text-align: center; font-size: 12px; font-family: 'Poppins', sans-serif; line-height: 1.5; margin-bottom: 20px;">
+                Karya ini masih jauh dari sempurna. Berikan umpan balik Anda untuk mendukung inovasi siswa vokasi.
             </p>
 
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(251, 191, 36, 0.3); padding: 15px 25px; border-radius: 8px; margin: 30px 0;">
-                <p style="color: #fbbf24; margin: 0; text-align: center; font-weight: 600; font-family: 'Poppins', sans-serif;">
-                    <a href="#" style="color: #fbbf24; text-decoration: none;">[Tautan Google Form Testimoni]</a>
-                </p>
+            <div class="form-wrapper">
+                <form id="testimoni-form" onsubmit="kirimTestimoni(event)" style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="text" id="nama" class="form-input" placeholder="Nama Anda" required>
+                    <textarea id="pesan" class="form-input" placeholder="Kesan & pesan Anda..." style="resize: none; height: 60px;" required></textarea>
+                    
+                    <button type="submit" class="submit-btn">
+                        Kirim Jejak 🚀
+                    </button>
+                </form>
+
+                <div id="pesan-sukses" style="display: none; text-align: center; color: #fbbf24; font-size: 13px; font-weight: 600; padding: 20px 0;">
+                    Terima kasih!<br>Jejak kebaikan Anda telah tersimpan. ✨
+                </div>
             </div>
 
-            <div style="margin-top: auto; font-family: 'Poppins', sans-serif;">
-                <p style="font-size: 12px; line-height: 1.6; color: #a7f3d0; text-align: center;">
+            <div style="margin-top: auto; font-family: 'Poppins', sans-serif; padding-top: 20px;">
+                <p style="font-size: 12px; line-height: 1.6; color: #a7f3d0; text-align: center; margin: 0;">
                     Tim Penyusun SMK Negeri 1 Turen<br>Maret 2026
                 </p>
-                <p style="font-size: 10px; color: #6ee7b7; text-align: center; margin-top: 15px; opacity: 0.7;">
+                <p style="font-size: 10px; color: #6ee7b7; text-align: center; margin-top: 10px; margin-bottom: 0; opacity: 0.7;">
                     @2026 Davis Rifandi
                 </p>
             </div>
@@ -585,17 +579,9 @@
 
     function putarAudio(idAudioBaru) {
         const semuaAudio = document.querySelectorAll('audio:not(#bg-music)');
-        
         semuaAudio.forEach(audio => {
             audio.pause();
             audio.currentTime = 0;
-        });
-
-        // Karena sekarang memakai YouTube (iframe), tag video biasa ditiadakan
-        // YouTube memiliki pemutar sendiri sehingga tidak bertabrakan dengan audio narasi
-        const semuaVideo = document.querySelectorAll('video');
-        semuaVideo.forEach(video => {
-            video.pause();
         });
 
         const vo = document.getElementById(idAudioBaru);
@@ -603,6 +589,15 @@
             vo.volume = 1.0; 
             vo.play();
         }
+    }
+
+    // --- FUNGSI FORM TESTIMONI ---
+    function kirimTestimoni(event) {
+        event.preventDefault(); 
+        
+        // Animasi transisi form sukses
+        document.getElementById('testimoni-form').style.display = 'none';
+        document.getElementById('pesan-sukses').style.display = 'block';
     }
 </script>
 </body>
