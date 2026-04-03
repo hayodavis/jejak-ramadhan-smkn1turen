@@ -244,6 +244,9 @@
             border-radius: 2px;
         }
 
+        /* =========================================
+           STYLING DAFTAR ISI INTERAKTIF
+           ========================================= */
         .toc-list {
             list-style: none;
             padding: 0;
@@ -257,10 +260,23 @@
             font-size: 13px;
             color: #334155;
             font-weight: 600;
+            cursor: pointer; /* Mengubah kursor jadi telunjuk */
+            transition: all 0.2s ease; /* Animasi mulus */
+            padding: 5px 0;
         }
-        .toc-title { padding-right: 5px; z-index: 1; }
-        .toc-page { padding-left: 5px; z-index: 1; color: #047857; font-family: 'Playfair Display', serif; font-weight: bold; }
-        .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; }
+        
+        /* Efek Hover saat Daftar Isi disentuh/dilewati kursor */
+        .toc-item:hover {
+            color: #059669; /* Berubah jadi hijau */
+            transform: translateX(5px); /* Geser sedikit ke kanan */
+        }
+        .toc-item:hover .toc-page {
+            color: #f59e0b; /* Angka halaman jadi emas */
+        }
+
+        .toc-title { padding-right: 5px; z-index: 1; pointer-events: none; }
+        .toc-page { padding-left: 5px; z-index: 1; color: #047857; font-family: 'Playfair Display', serif; font-weight: bold; pointer-events: none; transition: color 0.2s ease; }
+        .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; pointer-events: none; }
 
         button.play-audio {
             background: linear-gradient(to right, #059669, #047857);
@@ -381,16 +397,16 @@
     <div class="page">
         <h2 class="title">Daftar Isi</h2>
         <ul class="toc-list">
-            <li class="toc-item"><span class="toc-title">Kata Pengantar</span><span class="toc-dots"></span><span class="toc-page">I</span></li>
-            <li class="toc-item"><span class="toc-title">Transformasi Diri</span><span class="toc-dots"></span><span class="toc-page">1</span></li>
-            <li class="toc-item"><span class="toc-title">Sholat Berjamaah</span><span class="toc-dots"></span><span class="toc-page">2</span></li>
-            <li class="toc-item"><span class="toc-title">Tadarus & Nuzulul Qur'an</span><span class="toc-dots"></span><span class="toc-page">3</span></li>
-            <li class="toc-item"><span class="toc-title">Zakat Fitrah</span><span class="toc-dots"></span><span class="toc-page">4</span></li>
-            <li class="toc-item"><span class="toc-title">Berbagi Takjil</span><span class="toc-dots"></span><span class="toc-page">5</span></li>
-            <li class="toc-item"><span class="toc-title">Santunan Yatim</span><span class="toc-dots"></span><span class="toc-page">6</span></li>
-            <li class="toc-item"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
-            <li class="toc-item"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
-            <li class="toc-item"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
+            <li class="toc-item" onclick="bukaHalaman(1)"><span class="toc-title">Kata Pengantar</span><span class="toc-dots"></span><span class="toc-page">I</span></li>
+            <li class="toc-item" onclick="bukaHalaman(3)"><span class="toc-title">Transformasi Diri</span><span class="toc-dots"></span><span class="toc-page">1</span></li>
+            <li class="toc-item" onclick="bukaHalaman(4)"><span class="toc-title">Sholat Berjamaah</span><span class="toc-dots"></span><span class="toc-page">2</span></li>
+            <li class="toc-item" onclick="bukaHalaman(5)"><span class="toc-title">Tadarus & Nuzulul Qur'an</span><span class="toc-dots"></span><span class="toc-page">3</span></li>
+            <li class="toc-item" onclick="bukaHalaman(6)"><span class="toc-title">Zakat Fitrah</span><span class="toc-dots"></span><span class="toc-page">4</span></li>
+            <li class="toc-item" onclick="bukaHalaman(7)"><span class="toc-title">Berbagi Takjil</span><span class="toc-dots"></span><span class="toc-page">5</span></li>
+            <li class="toc-item" onclick="bukaHalaman(8)"><span class="toc-title">Santunan Yatim</span><span class="toc-dots"></span><span class="toc-page">6</span></li>
+            <li class="toc-item" onclick="bukaHalaman(9)"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
+            <li class="toc-item" onclick="bukaHalaman(10)"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
+            <li class="toc-item" onclick="bukaHalaman(11)"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
         </ul>
         <span class="page-number">II</span>
     </div>
@@ -535,23 +551,41 @@
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
 <script>
+    // Membawa variabel pageFlip keluar agar bisa diakses fungsi lain
+    let pageFlip;
+
     document.addEventListener('DOMContentLoaded', function() {
-        const pageFlip = new St.PageFlip(document.getElementById('book'), {
+        pageFlip = new St.PageFlip(document.getElementById('book'), {
             width: 400, height: 600, size: "fixed",
             minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
             maxShadowOpacity: 0.6, showCover: true, mobileScrollSupport: false
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-        // --- FIX FORM INPUT TIDAK BISA DIKLIK ---
-        // Menghentikan library PageFlip membajak klik mouse & sentuhan pada form
+        // Mencegah klik nyasar pada form belakang
         const formElements = document.querySelectorAll('.form-input, .submit-btn');
         formElements.forEach(el => {
             el.addEventListener('mousedown', (e) => e.stopPropagation());
             el.addEventListener('touchstart', (e) => e.stopPropagation());
             el.addEventListener('pointerdown', (e) => e.stopPropagation());
         });
+        
+        // Mencegah klik pada daftar isi memicu buku membalik satu halaman saja secara tidak sengaja
+        const tocItems = document.querySelectorAll('.toc-item');
+        tocItems.forEach(el => {
+            el.addEventListener('mousedown', (e) => e.stopPropagation());
+            el.addEventListener('touchstart', (e) => e.stopPropagation());
+            el.addEventListener('pointerdown', (e) => e.stopPropagation());
+        });
     });
+
+    // --- FUNGSI NAVIGASI DAFTAR ISI ---
+    function bukaHalaman(indeksHalaman) {
+        if (pageFlip) {
+            // Memaksa buku untuk membalik ke halaman spesifik
+            pageFlip.flip(indeksHalaman);
+        }
+    }
 
     function toggleBGM() {
         const bgm = document.getElementById('bg-music');
@@ -588,34 +622,27 @@
 
     // --- FUNGSI FORM TESTIMONI (TERHUBUNG KE GOOGLE SHEETS) ---
     function kirimTestimoni(event) {
-        event.preventDefault(); // Mencegah halaman refresh
+        event.preventDefault(); 
         
-        // 1. Ambil data dari kotak input
         const nama = document.getElementById('nama').value;
         const pesan = document.getElementById('pesan').value;
         
-        // 2. Ubah teks tombol menjadi efek loading agar interaktif
         const btn = document.querySelector('.submit-btn');
         btn.innerHTML = "Mengirim... ⏳";
         btn.disabled = true;
 
-        // 3. TEMPELKAN URL WEB APP GOOGLE SCRIPT ANDA DI SINI
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwA0FnahxbJy443sbtxwyhRHBpNbv4MPvxKNv6emV-gJ-HlTXDDC2rBRmIS4rkz3BWa/exec'; 
 
-        // 4. Siapkan data untuk dikirim
         let formData = new FormData();
         formData.append('nama', nama);
         formData.append('pesan', pesan);
 
-        // 5. Kirim ke Google Sheets secara diam-diam (tanpa pindah halaman)
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
-                // Jika sukses, sembunyikan form dan tampilkan pesan sukses
                 document.getElementById('testimoni-form').style.display = 'none';
                 document.getElementById('pesan-sukses').style.display = 'block';
             })
             .catch(error => {
-                // Jika gagal (karena sinyal dll)
                 console.error('Error!', error.message);
                 btn.innerHTML = "Gagal. Coba Lagi!";
                 btn.disabled = false;
