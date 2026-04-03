@@ -246,6 +246,7 @@
             z-index: 2; /* Agar di atas pola latar */
         }
         .image-placeholder img,
+        .image-placeholder iframe,
         .image-placeholder video {
             width: 100%;
             height: 100%;
@@ -514,13 +515,11 @@
         <h2 class="title">Jejak Bergerak</h2>
         <p>Untuk melengkapi rekam jejak digital ini, saksikan sekilas potret semangat dan sinergi dari siswa-siswi SMK Negeri 1 Turen selama pelaksanaan program Pondok Ramadhan. Mari saksikan kolaborasi kami secara langsung.</p>
         
-        <div class="image-placeholder" style="padding: 0; background: #000;">
-            <video src="video-ramadhan.mp4" controls preload="metadata">
-                Browser Anda tidak mendukung tag video.
-            </video>
+        <div class="image-placeholder" style="padding: 0; background: #000; border: none;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/G9pfgTBNIO0?si=mq3TCKk9EidNIcld" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 2px;"></iframe>
         </div>
         
-        <audio id="audio11" src="suara10.mp3"></audio>
+        <audio id="audio11" src="jejak-bergerak.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio11')">🔊 Pengantar Video</button>
         <span class="page-number">9</span>
     </div>
@@ -592,6 +591,8 @@
             audio.currentTime = 0;
         });
 
+        // Karena sekarang memakai YouTube (iframe), tag video biasa ditiadakan
+        // YouTube memiliki pemutar sendiri sehingga tidak bertabrakan dengan audio narasi
         const semuaVideo = document.querySelectorAll('video');
         semuaVideo.forEach(video => {
             video.pause();
