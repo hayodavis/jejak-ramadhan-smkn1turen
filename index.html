@@ -113,7 +113,6 @@
            ========================================= */
         .page {
             background-color: #fdfbf7;
-            /* Pola transparan Islami sebagai tekstur kertas */
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V26H0v-2h20v-3.5zm-11-2.5l3.5-3.5L16 11V0h-2v11l-3.5 3.5L7 11V0H5v11l-3.5 3.5L5 18H0v2h5l3.5-3.5zM35 11l-3.5 3.5L28 11V0h2v11l3.5 3.5L37 11V0h2v11l-3.5 3.5L35 18h5v-2h-5zM9 28.5L5.5 32 2 28.5V40h2V28.5l3.5-3.5L11 28.5V40h2V28.5L9.5 25 6 28.5zM35 28.5L31.5 32 28 28.5V40h2V28.5l3.5-3.5L37 28.5V40h2V28.5L35.5 25 32 28.5z' fill='%23047857' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
             border: 1px solid #e2e8f0;
             padding: 40px;
@@ -124,7 +123,6 @@
             position: relative;
         }
 
-        /* Bingkai Ornamen Sudut (Atas Kiri & Bawah Kanan) */
         .page::before {
             content: "";
             position: absolute;
@@ -152,16 +150,13 @@
             opacity: 0.8;
         }
 
-        /* Matikan bingkai sudut di halaman cover */
         .page.cover::before, .page.cover::after {
             display: none;
         }
 
-        /* Efek Lipatan Tengah Buku */
         .page.--left { border-right: 0; box-shadow: inset -10px 0 40px -10px rgba(0,0,0,0.15); }
         .page.--right { border-left: 0; box-shadow: inset 10px 0 40px -10px rgba(0,0,0,0.15); }
 
-        /* COVER DEPAN & BELAKANG EKSKLUSIF */
         .cover {
             background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
             color: #ecfdf5;
@@ -177,7 +172,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Modifikasi padding agar bagian bawah tidak menabrak bingkai */
             padding: 40px 20px 40px 20px; 
             box-sizing: border-box;
         }
@@ -195,9 +189,6 @@
             display: block;
         }
 
-        /* =========================================
-           KONTEN HALAMAN DALAM & ORNAMEN JUDUL
-           ========================================= */
         h2.title {
             font-family: 'Playfair Display', serif;
             color: #047857;
@@ -228,7 +219,6 @@
             font-weight: 300;
         }
 
-        /* Area Gambar dan Video */
         .image-placeholder {
             background: #ffffff;
             padding: 8px;
@@ -243,7 +233,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
             position: relative;
-            z-index: 2;
+            z-index: 2; 
         }
         .image-placeholder img,
         .image-placeholder iframe,
@@ -254,7 +244,6 @@
             border-radius: 2px;
         }
 
-        /* Styling Khusus Daftar Isi */
         .toc-list {
             list-style: none;
             padding: 0;
@@ -273,7 +262,6 @@
         .toc-page { padding-left: 5px; z-index: 1; color: #047857; font-family: 'Playfair Display', serif; font-weight: bold; }
         .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; }
 
-        /* Tombol Audio Premium */
         button.play-audio {
             background: linear-gradient(to right, #059669, #047857);
             color: white;
@@ -308,10 +296,9 @@
         .page.--right .page-number { right: 25px; }
 
         /* =========================================
-           STYLE FORM COVER BELAKANG (DIPERBAIKI)
+           STYLE FORM COVER BELAKANG
            ========================================= */
         .form-wrapper {
-            /* Fix utama agar elemen di dalamnya bisa diklik */
             position: relative;
             z-index: 100;
             pointer-events: auto;
@@ -332,7 +319,6 @@
             font-size: 12px;
             background: rgba(255,255,255,0.9);
             box-sizing: border-box;
-            /* Penegasan agar bisa di-klik */
             position: relative;
             z-index: 101; 
         }
@@ -556,6 +542,15 @@
             maxShadowOpacity: 0.6, showCover: true, mobileScrollSupport: false
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+        // --- FIX FORM INPUT TIDAK BISA DIKLIK ---
+        // Menghentikan library PageFlip membajak klik mouse & sentuhan pada form
+        const formElements = document.querySelectorAll('.form-input, .submit-btn');
+        formElements.forEach(el => {
+            el.addEventListener('mousedown', (e) => e.stopPropagation());
+            el.addEventListener('touchstart', (e) => e.stopPropagation());
+            el.addEventListener('pointerdown', (e) => e.stopPropagation());
+        });
     });
 
     function toggleBGM() {
@@ -591,11 +586,9 @@
         }
     }
 
-    // --- FUNGSI FORM TESTIMONI ---
     function kirimTestimoni(event) {
         event.preventDefault(); 
         
-        // Animasi transisi form sukses
         document.getElementById('testimoni-form').style.display = 'none';
         document.getElementById('pesan-sukses').style.display = 'block';
     }
