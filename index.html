@@ -586,11 +586,40 @@
         }
     }
 
+    // --- FUNGSI FORM TESTIMONI (TERHUBUNG KE GOOGLE SHEETS) ---
     function kirimTestimoni(event) {
-        event.preventDefault(); 
+        event.preventDefault(); // Mencegah halaman refresh
         
-        document.getElementById('testimoni-form').style.display = 'none';
-        document.getElementById('pesan-sukses').style.display = 'block';
+        // 1. Ambil data dari kotak input
+        const nama = document.getElementById('nama').value;
+        const pesan = document.getElementById('pesan').value;
+        
+        // 2. Ubah teks tombol menjadi efek loading agar interaktif
+        const btn = document.querySelector('.submit-btn');
+        btn.innerHTML = "Mengirim... ⏳";
+        btn.disabled = true;
+
+        // 3. TEMPELKAN URL WEB APP GOOGLE SCRIPT ANDA DI SINI
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwA0FnahxbJy443sbtxwyhRHBpNbv4MPvxKNv6emV-gJ-HlTXDDC2rBRmIS4rkz3BWa/exec'; 
+
+        // 4. Siapkan data untuk dikirim
+        let formData = new FormData();
+        formData.append('nama', nama);
+        formData.append('pesan', pesan);
+
+        // 5. Kirim ke Google Sheets secara diam-diam (tanpa pindah halaman)
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                // Jika sukses, sembunyikan form dan tampilkan pesan sukses
+                document.getElementById('testimoni-form').style.display = 'none';
+                document.getElementById('pesan-sukses').style.display = 'block';
+            })
+            .catch(error => {
+                // Jika gagal (karena sinyal dll)
+                console.error('Error!', error.message);
+                btn.innerHTML = "Gagal. Coba Lagi!";
+                btn.disabled = false;
+            });
     }
 </script>
 </body>
