@@ -25,7 +25,7 @@
             top: 25px;
             right: 25px;
             z-index: 1000;
-            background: rgba(6, 78, 59, 0.85); /* Hijau Zamrud Transparan */
+            background: rgba(6, 78, 59, 0.85);
             color: #fbbf24;
             border: 1px solid #fbbf24;
             padding: 10px 20px;
@@ -108,9 +108,13 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
 
-        /* Gaya Halaman Dalam (Kertas Lembut) */
+        /* =========================================
+           GAYA HALAMAN & ORNAMEN (BARU)
+           ========================================= */
         .page {
             background-color: #fdfbf7;
+            /* Pola transparan Islami sebagai tekstur kertas */
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V26H0v-2h20v-3.5zm-11-2.5l3.5-3.5L16 11V0h-2v11l-3.5 3.5L7 11V0H5v11l-3.5 3.5L5 18H0v2h5l3.5-3.5zM35 11l-3.5 3.5L28 11V0h2v11l3.5 3.5L37 11V0h2v11l-3.5 3.5L35 18h5v-2h-5zM9 28.5L5.5 32 2 28.5V40h2V28.5l3.5-3.5L11 28.5V40h2V28.5L9.5 25 6 28.5zM35 28.5L31.5 32 28 28.5V40h2V28.5l3.5-3.5L37 28.5V40h2V28.5L35.5 25 32 28.5z' fill='%23047857' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
             border: 1px solid #e2e8f0;
             padding: 40px;
             box-sizing: border-box;
@@ -118,6 +122,39 @@
             display: flex;
             flex-direction: column;
             position: relative;
+        }
+
+        /* Bingkai Ornamen Sudut (Atas Kiri & Bawah Kanan) */
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 35px;
+            height: 35px;
+            border-top: 2px solid #059669;
+            border-left: 2px solid #059669;
+            border-top-left-radius: 6px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .page::after {
+            content: "";
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-bottom: 2px solid #fbbf24;
+            border-right: 2px solid #fbbf24;
+            border-bottom-right-radius: 6px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* Matikan bingkai sudut di halaman cover */
+        .page.cover::before, .page.cover::after {
+            display: none;
         }
 
         /* Efek Lipatan Tengah Buku */
@@ -157,14 +194,30 @@
             display: block;
         }
 
-        /* KONTEN HALAMAN DALAM */
+        /* =========================================
+           KONTEN HALAMAN DALAM & ORNAMEN JUDUL
+           ========================================= */
         h2.title {
             font-family: 'Playfair Display', serif;
             color: #047857;
-            border-bottom: 2px solid #10b981;
-            padding-bottom: 10px;
-            font-size: 22px;
-            margin-top: 0;
+            text-align: center;
+            font-size: 21px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        /* Ornamen di bawah judul */
+        h2.title::after {
+            content: "✦ ✧ ✦";
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #fbbf24;
+            letter-spacing: 4px;
+            opacity: 0.8;
         }
 
         p {
@@ -180,7 +233,8 @@
             background: #ffffff;
             padding: 8px;
             border-radius: 4px;
-            margin-top: 15px;
+            margin-top: auto;
+            margin-bottom: 15px;
             flex-grow: 1;
             display: flex;
             align-items: center;
@@ -188,6 +242,8 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 2; /* Agar di atas pola latar */
         }
         .image-placeholder img,
         .image-placeholder video {
@@ -201,7 +257,7 @@
         .toc-list {
             list-style: none;
             padding: 0;
-            margin-top: 15px;
+            margin-top: 25px;
         }
         .toc-item {
             display: flex;
@@ -213,12 +269,10 @@
             font-weight: 600;
         }
         .toc-title {
-            background: #fdfbf7;
             padding-right: 5px;
             z-index: 1;
         }
         .toc-page {
-            background: #fdfbf7;
             padding-left: 5px;
             z-index: 1;
             color: #047857;
@@ -243,11 +297,12 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 600;
-            margin-top: 20px;
             transition: all 0.3s ease;
             align-self: flex-start;
             box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
             font-family: 'Poppins', sans-serif;
+            position: relative;
+            z-index: 2;
         }
         button.play-audio:hover {
             background: linear-gradient(to right, #047857, #064e3b);
@@ -306,7 +361,7 @@
         <p>Buku digital ini disusun sebagai bentuk partisipasi aktif keluarga besar <b>SMK Negeri 1 Turen</b> dalam menyukseskan program "Ramadhan Berdampak". Kami menyadari bahwa bulan suci Ramadhan adalah momentum emas untuk memperkuat nilai spiritual sekaligus membangun kepedulian sosial yang nyata.</p>
         <p>Melalui literasi digital ini, kami berupaya mendokumentasikan berbagai praktik baik, mulai dari aktivitas ibadah hingga aksi sosial yang menebar manfaat dan memunculkan karakter positif bagi seluruh siswa.</p>
         <audio id="audio1" src="pengantar.mp3"></audio>
-        <button class="play-audio" onclick="putarAudio('audio1')">🔊 Dengarkan Pesan Pembuka</button>
+        <button class="play-audio" onclick="putarAudio('audio1')" style="margin-top: auto;">🔊 Dengarkan Pesan</button>
         <span class="page-number">I</span>
     </div>
 
@@ -329,7 +384,7 @@
                 <span class="toc-page">2</span>
             </li>
             <li class="toc-item">
-                <span class="toc-title">Nuzulul Qur'an</span>
+                <span class="toc-title">Tadarus & Nuzulul Qur'an</span>
                 <span class="toc-dots"></span>
                 <span class="toc-page">3</span>
             </li>
@@ -390,10 +445,10 @@
     </div>
 
     <div class="page">
-        <h2 class="title">Cinta Al-Qur'an: Tadarus & Nuzulul Qur'an</h2>
+        <h2 class="title">Cinta Al-Qur'an</h2>
         <p>Rutinitas Tadarus harian dan peringatan Nuzulul Qur'an menjadi momentum krusial untuk memperkuat karakter spiritual peserta didik. Interaksi dengan Al-Qur'an tidak sekadar berhenti pada tilawah ritual, tetapi bertransformasi menjadi pedoman etika dan moral keseharian untuk mencetak generasi dengan kecerdasan spiritual yang tangguh.</p>
         <div class="image-placeholder">
-            <img src="tadarus.jpg" alt="Peringatan Nuzulul Qur'an">
+            <img src="tadarus.jpg" alt="Kegiatan Tadarus dan Nuzulul Qur'an">
         </div>
         <audio id="audio5" src="tadarus.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio5')">🔊 Lentera Kehidupan</button>
@@ -439,8 +494,8 @@
         <div class="image-placeholder">
             <img src="pondok-kasih.jpg" alt="Kegiatan Pondok Kasih">
         </div>
-        <audio id="audio3" src="pondok-kasih.mp3"></audio>
-        <button class="play-audio" onclick="putarAudio('audio3')">🔊 Semangat Toleransi</button>
+        <audio id="audio9" src="pondok-kasih.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio9')">🔊 Semangat Toleransi</button>
         <span class="page-number">7</span>
     </div>
 
@@ -450,8 +505,8 @@
         <div class="image-placeholder">
             <img src="renungan.jpg" alt="Kegiatan Renungan dan Refleksi">
         </div>
-        <audio id="audio9" src="renungan.mp3"></audio>
-        <button class="play-audio" onclick="putarAudio('audio9')">🔊 Suara Hati</button>
+        <audio id="audio10" src="renungan.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio10')">🔊 Suara Hati</button>
         <span class="page-number">8</span>
     </div>
 
