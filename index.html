@@ -37,27 +37,9 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
         }
-        #bgm-btn:hover {
-            background: #fbbf24;
-            color: #064e3b;
-            transform: scale(1.05);
-        }
+        #bgm-btn:hover { background: #fbbf24; color: #064e3b; transform: scale(1.05); }
 
-        .instruction-panel {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 400px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            box-sizing: border-box;
-            text-align: center;
-            z-index: -1;
-        }
+        .instruction-panel { position: absolute; left: 0; top: 0; width: 400px; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; box-sizing: border-box; text-align: center; z-index: -1; }
         .instruction-panel h3 { color: #fbbf24; font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 5px; }
         .instruction-panel p.subtitle { color: #a7f3d0; font-size: 14px; margin-top: 0; margin-bottom: 25px; letter-spacing: 1px; }
         .instruction-panel p.guide { color: #94a3b8; font-size: 12px; line-height: 1.5; margin-bottom: 12px; background: rgba(255, 255, 255, 0.05); padding: 10px 15px; border-radius: 8px; border: 1px dashed #475569; width: 100%; box-sizing: border-box; }
@@ -67,18 +49,7 @@
 
         .flip-book { width: 800px; height: 600px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
 
-        .page {
-            background-color: #fdfbf7;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V26H0v-2h20v-3.5zm-11-2.5l3.5-3.5L16 11V0h-2v11l-3.5 3.5L7 11V0H5v11l-3.5 3.5L5 18H0v2h5l3.5-3.5zM35 11l-3.5 3.5L28 11V0h2v11l3.5 3.5L37 11V0h2v11l-3.5 3.5L35 18h5v-2h-5zM9 28.5L5.5 32 2 28.5V40h2V28.5l3.5-3.5L11 28.5V40h2V28.5L9.5 25 6 28.5zM35 28.5L31.5 32 28 28.5V40h2V28.5l3.5-3.5L37 28.5V40h2V28.5L35.5 25 32 28.5z' fill='%23047857' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-            border: 1px solid #e2e8f0;
-            padding: 40px;
-            box-sizing: border-box;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
+        .page { background-color: #fdfbf7; background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V26H0v-2h20v-3.5zm-11-2.5l3.5-3.5L16 11V0h-2v11l-3.5 3.5L7 11V0H5v11l-3.5 3.5L5 18H0v2h5l3.5-3.5zM35 11l-3.5 3.5L28 11V0h2v11l3.5 3.5L37 11V0h2v11l-3.5 3.5L35 18h5v-2h-5zM9 28.5L5.5 32 2 28.5V40h2V28.5l3.5-3.5L11 28.5V40h2V28.5L9.5 25 6 28.5zM35 28.5L31.5 32 28 28.5V40h2V28.5l3.5-3.5L37 28.5V40h2V28.5L35.5 25 32 28.5z' fill='%23047857' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E"); border: 1px solid #e2e8f0; padding: 40px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; position: relative; }
         .page::before { content: ""; position: absolute; top: 15px; left: 15px; width: 35px; height: 35px; border-top: 2px solid #059669; border-left: 2px solid #059669; border-top-left-radius: 6px; pointer-events: none; opacity: 0.7; }
         .page::after { content: ""; position: absolute; bottom: 15px; right: 15px; width: 35px; height: 35px; border-bottom: 2px solid #fbbf24; border-right: 2px solid #fbbf24; border-bottom-right-radius: 6px; pointer-events: none; opacity: 0.8; }
         .page.cover::before, .page.cover::after { display: none; }
@@ -106,10 +77,39 @@
         .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; pointer-events: none; }
 
         /* KOTAK TESTIMONI */
-        .testimonial-box { background: rgba(4, 120, 87, 0.05); border-left: 4px solid #fbbf24; padding: 15px; margin-bottom: 15px; border-radius: 4px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .quote-icon { font-size: 24px; color: #fbbf24; position: absolute; top: 5px; left: 10px; opacity: 0.5; font-family: serif; }
-        .testimonial-text { font-size: 12px; font-style: italic; color: #475569; margin-bottom: 8px; margin-top: 0; padding-left: 20px; line-height: 1.6; }
-        .testimonial-author { font-size: 11px; font-weight: 600; color: #047857; text-align: right; margin: 0; }
+        .testimonial-box { background: rgba(4, 120, 87, 0.05); border-left: 4px solid #fbbf24; padding: 12px; margin-bottom: 10px; border-radius: 4px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .quote-icon { font-size: 20px; color: #fbbf24; position: absolute; top: 5px; left: 10px; opacity: 0.5; font-family: serif; }
+        .testimonial-text { font-size: 11px; font-style: italic; color: #475569; margin-bottom: 6px; margin-top: 0; padding-left: 18px; line-height: 1.5; }
+        .testimonial-author { font-size: 10px; font-weight: 600; color: #047857; text-align: right; margin: 0; }
+
+        /* =========================================
+           STYLING PAGINATION TESTIMONI
+           ========================================= */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 10;
+        }
+        .page-btn {
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            color: #064e3b;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .page-btn:hover:not(:disabled) { transform: scale(1.05); }
+        .page-btn:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; box-shadow: none; transform: none; }
+        .page-info { font-size: 11px; color: #475569; font-weight: 600; }
 
         button.play-audio { background: linear-gradient(to right, #059669, #047857); color: white; border: none; padding: 10px 18px; border-radius: 25px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.3s ease; align-self: flex-start; box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3); font-family: 'Poppins', sans-serif; position: relative; z-index: 2; }
         button.play-audio:hover { background: linear-gradient(to right, #047857, #064e3b); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(5, 150, 105, 0.4); }
@@ -279,14 +279,20 @@
         <h2 class="title">Kesan & Pesan</h2>
         <p style="margin-bottom: 15px;">Beberapa rekam jejak kebaikan dan dukungan yang telah ditinggalkan oleh para pembaca untuk inovasi siswa-siswi kami.</p>
 
-        <div id="tempat-testimoni">
+        <div id="tempat-testimoni" style="min-height: 350px;">
             <p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic; margin-top: 50px;">
                 Mengambil data terbaru... ⏳
             </p>
         </div>
 
+        <div class="pagination-container" id="pagination-controls" style="display: none;">
+            <button id="btn-prev" class="page-btn" onclick="gantiHalamanTestimoni(-1)">◀ Prev</button>
+            <span id="page-info" class="page-info">Hal 1/1</span>
+            <button id="btn-next" class="page-btn" onclick="gantiHalamanTestimoni(1)">Next ▶</button>
+        </div>
+
+        <button class="play-audio" onclick="putarAudio('audio12')">🔊 Dengarkan Pesan</button>
         <audio id="audio12" src="kesan-pesan.mp3"></audio>
-        <button class="play-audio" onclick="putarAudio('audio12')" style="margin-top: auto;">🔊 Dengarkan Pesan</button>
         <span class="page-number">10</span>
     </div>
 
@@ -333,12 +339,15 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwA0FnahxbJy443sbtxwyhRHBpNbv4MPvxKNv6emV-gJ-HlTXDDC2rBRmIS4rkz3BWa/exec'; 
     let pageFlip;
 
+    // VARIABEL GLOBAL UNTUK PAGINATION
+    let semuaTestimoni = [];
+    let halamanTestimoniSaatIni = 1;
+    const itemPerHalaman = 5;
+
     document.addEventListener('DOMContentLoaded', function() {
         
-        // 1. Panggil fungsi untuk mengambil data testimoni dari Google Sheets
         muatTestimoniDinamis();
 
-        // 2. Jalankan Buku Digital
         pageFlip = new St.PageFlip(document.getElementById('book'), {
             width: 400, height: 600, size: "fixed",
             minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
@@ -346,8 +355,9 @@
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-        const formElements = document.querySelectorAll('.form-wrapper');
-        formElements.forEach(el => {
+        // Lindungi wadah form DAN tombol pagination agar tidak membalik buku saat diklik
+        const elemenDilindungi = document.querySelectorAll('.form-wrapper, .pagination-container');
+        elemenDilindungi.forEach(el => {
             el.addEventListener('mousedown', (e) => e.stopPropagation());
             el.addEventListener('touchstart', (e) => e.stopPropagation());
             el.addEventListener('pointerdown', (e) => e.stopPropagation());
@@ -359,31 +369,58 @@
         fetch(scriptURL)
             .then(response => response.json())
             .then(data => {
-                const wadah = document.getElementById('tempat-testimoni');
-                wadah.innerHTML = ''; // Hapus teks loading
-
-                if(data.length === 0) {
-                    wadah.innerHTML = '<p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic;">Belum ada jejak yang ditinggalkan. Jadilah yang pertama!</p>';
-                    return;
-                }
-
-                // Render setiap data menjadi kotak testimoni
-                let html = '';
-                data.forEach(item => {
-                    html += `
-                    <div class="testimonial-box">
-                        <span class="quote-icon">❝</span>
-                        <p class="testimonial-text">"${item.pesan}"</p>
-                        <p class="testimonial-author">- ${item.nama}</p>
-                    </div>
-                    `;
-                });
-                wadah.innerHTML = html;
+                semuaTestimoni = data;
+                halamanTestimoniSaatIni = 1; // Reset ke halaman pertama
+                renderDaftarTestimoni();     // Render datanya
             })
             .catch(error => {
                 console.error('Gagal mengambil data testimoni:', error);
                 document.getElementById('tempat-testimoni').innerHTML = '<p style="text-align:center; font-size:12px; color:red;">Gagal memuat pesan terbaru. Periksa koneksi internet Anda.</p>';
             });
+    }
+
+    // --- FUNGSI MENGGAMBAR KOTAK TESTIMONI SESUAI HALAMAN ---
+    function renderDaftarTestimoni() {
+        const wadah = document.getElementById('tempat-testimoni');
+        const kontrolPagination = document.getElementById('pagination-controls');
+        
+        if(semuaTestimoni.length === 0) {
+            wadah.innerHTML = '<p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic;">Belum ada jejak yang ditinggalkan. Jadilah yang pertama!</p>';
+            kontrolPagination.style.display = 'none';
+            return;
+        }
+
+        // Tentukan batas potong (slice) array
+        const indexMulai = (halamanTestimoniSaatIni - 1) * itemPerHalaman;
+        const indexAkhir = indexMulai + itemPerHalaman;
+        const testimoniYangDitampilkan = semuaTestimoni.slice(indexMulai, indexAkhir);
+
+        // Buat HTML Kotak-kotak Testimoni
+        let html = '';
+        testimoniYangDitampilkan.forEach(item => {
+            html += `
+            <div class="testimonial-box">
+                <span class="quote-icon">❝</span>
+                <p class="testimonial-text">"${item.pesan}"</p>
+                <p class="testimonial-author">- ${item.nama}</p>
+            </div>
+            `;
+        });
+        wadah.innerHTML = html;
+
+        // Atur Tampilan Tombol Navigasi
+        kontrolPagination.style.display = 'flex';
+        const totalHalaman = Math.ceil(semuaTestimoni.length / itemPerHalaman);
+        
+        document.getElementById('page-info').innerText = `Hal ${halamanTestimoniSaatIni} / ${totalHalaman}`;
+        document.getElementById('btn-prev').disabled = halamanTestimoniSaatIni === 1;
+        document.getElementById('btn-next').disabled = halamanTestimoniSaatIni === totalHalaman;
+    }
+
+    // --- FUNGSI KETIKA TOMBOL NEXT/PREV DIKLIK ---
+    function gantiHalamanTestimoni(arah) {
+        halamanTestimoniSaatIni += arah;
+        renderDaftarTestimoni();
     }
 
     function bukaHalaman(indeksHalaman) {
@@ -395,9 +432,7 @@
     function toggleBGM() {
         const bgm = document.getElementById('bg-music');
         const btn = document.getElementById('bgm-btn');
-        
         bgm.volume = 0.2; 
-
         if (bgm.paused) {
             bgm.play();
             btn.innerHTML = "🎶 Musik ON";
@@ -417,7 +452,6 @@
             audio.pause();
             audio.currentTime = 0;
         });
-
         const vo = document.getElementById(idAudioBaru);
         if (vo) {
             vo.volume = 1.0; 
@@ -427,11 +461,10 @@
 
     function kirimTestimoni(event) {
         event.preventDefault(); 
-        
         const nama = document.getElementById('nama').value;
         const pesan = document.getElementById('pesan').value;
-        
         const btn = document.querySelector('.submit-btn');
+        
         btn.innerHTML = "Mengirim... ⏳";
         btn.disabled = true;
 
@@ -444,8 +477,8 @@
                 document.getElementById('testimoni-form').style.display = 'none';
                 document.getElementById('pesan-sukses').style.display = 'block';
                 
-                // Opsional: Reload data testimoni secara diam-diam setelah sukses mengirim
-                setTimeout(muatTestimoniDinamis, 2000); 
+                // Ambil ulang data dari Google Sheet agar testimoni baru langsung masuk ke pagination
+                setTimeout(muatTestimoniDinamis, 1500); 
             })
             .catch(error => {
                 console.error('Error!', error.message);
