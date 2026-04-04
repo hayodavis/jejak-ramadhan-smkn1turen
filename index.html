@@ -68,8 +68,8 @@
         .image-placeholder { background: #ffffff; padding: 8px; border-radius: 4px; margin-top: auto; margin-bottom: 15px; flex-grow: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; position: relative; z-index: 2; }
         .image-placeholder img, .image-placeholder iframe, .image-placeholder video { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
 
-        .toc-list { list-style: none; padding: 0; margin-top: 25px; }
-        .toc-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-size: 13px; color: #334155; font-weight: 600; cursor: pointer; transition: all 0.2s ease; padding: 5px 0; }
+        .toc-list { list-style: none; padding: 0; margin-top: 20px; }
+        .toc-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; font-size: 13px; color: #334155; font-weight: 600; cursor: pointer; transition: all 0.2s ease; padding: 5px 0; }
         .toc-item:hover { color: #059669; transform: translateX(5px); }
         .toc-item:hover .toc-page { color: #f59e0b; }
         .toc-title { padding-right: 5px; z-index: 1; pointer-events: none; }
@@ -161,15 +161,16 @@
         <ul class="toc-list">
             <li class="toc-item" onclick="bukaHalaman(1)"><span class="toc-title">Kata Pengantar</span><span class="toc-dots"></span><span class="toc-page">I</span></li>
             <li class="toc-item" onclick="bukaHalaman(3)"><span class="toc-title">Transformasi Diri</span><span class="toc-dots"></span><span class="toc-page">1</span></li>
-            <li class="toc-item" onclick="bukaHalaman(4)"><span class="toc-title">Sholat Berjamaah</span><span class="toc-dots"></span><span class="toc-page">2</span></li>
-            <li class="toc-item" onclick="bukaHalaman(5)"><span class="toc-title">Tadarus & Nuzulul Qur'an</span><span class="toc-dots"></span><span class="toc-page">3</span></li>
-            <li class="toc-item" onclick="bukaHalaman(6)"><span class="toc-title">Zakat Fitrah</span><span class="toc-dots"></span><span class="toc-page">4</span></li>
-            <li class="toc-item" onclick="bukaHalaman(7)"><span class="toc-title">Berbagi Takjil</span><span class="toc-dots"></span><span class="toc-page">5</span></li>
-            <li class="toc-item" onclick="bukaHalaman(8)"><span class="toc-title">Santunan Yatim</span><span class="toc-dots"></span><span class="toc-page">6</span></li>
-            <li class="toc-item" onclick="bukaHalaman(9)"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
-            <li class="toc-item" onclick="bukaHalaman(10)"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
-            <li class="toc-item" onclick="bukaHalaman(11)"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
-            <li class="toc-item" onclick="bukaHalaman(12)"><span class="toc-title">Kesan & Pesan</span><span class="toc-dots"></span><span class="toc-page">10</span></li>
+            <li class="toc-item" onclick="bukaHalaman(4)"><span class="toc-title">Guru Tamu Religi</span><span class="toc-dots"></span><span class="toc-page">2</span></li>
+            <li class="toc-item" onclick="bukaHalaman(5)"><span class="toc-title">Sholat Berjamaah</span><span class="toc-dots"></span><span class="toc-page">3</span></li>
+            <li class="toc-item" onclick="bukaHalaman(6)"><span class="toc-title">Tadarus & Nuzulul Qur'an</span><span class="toc-dots"></span><span class="toc-page">4</span></li>
+            <li class="toc-item" onclick="bukaHalaman(7)"><span class="toc-title">Zakat Fitrah</span><span class="toc-dots"></span><span class="toc-page">5</span></li>
+            <li class="toc-item" onclick="bukaHalaman(8)"><span class="toc-title">Berbagi Takjil</span><span class="toc-dots"></span><span class="toc-page">6</span></li>
+            <li class="toc-item" onclick="bukaHalaman(9)"><span class="toc-title">Santunan Yatim</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
+            <li class="toc-item" onclick="bukaHalaman(10)"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
+            <li class="toc-item" onclick="bukaHalaman(11)"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
+            <li class="toc-item" onclick="bukaHalaman(12)"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">10</span></li>
+            <li class="toc-item" onclick="bukaHalaman(13)"><span class="toc-title">Kesan & Pesan</span><span class="toc-dots"></span><span class="toc-page">11</span></li>
         </ul>
         <span class="page-number">II</span>
     </div>
@@ -186,6 +187,19 @@
     </div>
 
     <div class="page">
+        <h2 class="title" style="font-size: 17px; line-height: 1.4;">Guru Tamu Religi sebagai Manifestasi Cinta Ilmu & Akhlak</h2>
+        
+        <p style="margin-bottom: 15px;">Kehadiran narasumber ahli, <b>Ustadz Dr. Muhammad Maskur Izzy Baikhuni, M.Pd.</b>, menjadi langkah strategis dalam penguatan karakter spiritual di SMKN 1 Turen. Sinergi bersama tokoh agama ini bukan sekadar transfer keilmuan, melainkan wujud nyata untuk menginternalisasi nilai-nilai kemanusiaan dan moderasi beragama bagi para siswa.</p>
+        
+        <div class="image-placeholder">
+            <img src="guru-tamu.jpg" alt="Guru Tamu Religi Ustadz Dr. Muhammad Maskur Izzy Baikhuni, M.Pd">
+        </div>
+        <audio id="audio-gurutamu" src="guru-tamu.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio-gurutamu')">🔊 Siraman Rohani</button>
+        <span class="page-number">2</span>
+    </div>
+
+    <div class="page">
         <h2 class="title">Cinta Ibadah: Sholat Berjamaah</h2>
         <p>Sholat berjamaah memiliki urgensi fundamental sebagai instrumen penguatan karakter. Secara pedagogis, aktivitas ini melatih kepatuhan hierarkis dan kohesi sosial yang tinggi, di mana perbedaan latar belakang disatukan dalam barisan saf yang setara. Ini adalah laboratorium kontekstual kedisiplinan.</p>
         <div class="image-placeholder">
@@ -193,7 +207,7 @@
         </div>
         <audio id="audio4" src="sholat-berjamaah.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio4')">🔊 Renungan Ibadah</button>
-        <span class="page-number">2</span>
+        <span class="page-number">3</span>
     </div>
 
     <div class="page">
@@ -204,7 +218,7 @@
         </div>
         <audio id="audio5" src="tadarus.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio5')">🔊 Lentera Kehidupan</button>
-        <span class="page-number">3</span>
+        <span class="page-number">4</span>
     </div>
 
     <div class="page">
@@ -215,7 +229,7 @@
         </div>
         <audio id="audio6" src="zakat.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio6')">🔊 Harmoni Berbagi</button>
-        <span class="page-number">4</span>
+        <span class="page-number">5</span>
     </div>
 
     <div class="page">
@@ -226,7 +240,7 @@
         </div>
         <audio id="audio7" src="takjil.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio7')">🔊 Indahnya Berbagi</button>
-        <span class="page-number">5</span>
+        <span class="page-number">6</span>
     </div>
 
     <div class="page">
@@ -237,7 +251,7 @@
         </div>
         <audio id="audio8" src="santunan.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio8')">🔊 Pelukan Hangat</button>
-        <span class="page-number">6</span>
+        <span class="page-number">7</span>
     </div>
 
     <div class="page">
@@ -248,7 +262,7 @@
         </div>
         <audio id="audio9" src="pondok-kasih.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio9')">🔊 Semangat Toleransi</button>
-        <span class="page-number">7</span>
+        <span class="page-number">8</span>
     </div>
 
     <div class="page">
@@ -259,7 +273,7 @@
         </div>
         <audio id="audio10" src="renungan.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio10')">🔊 Suara Hati</button>
-        <span class="page-number">8</span>
+        <span class="page-number">9</span>
     </div>
 
     <div class="page">
@@ -272,7 +286,7 @@
         
         <audio id="audio11" src="jejak-bergerak.mp3"></audio>
         <button class="play-audio" onclick="putarAudio('audio11')">🔊 Pengantar Video</button>
-        <span class="page-number">9</span>
+        <span class="page-number">10</span>
     </div>
 
     <div class="page">
@@ -293,7 +307,7 @@
 
         <button class="play-audio" onclick="putarAudio('audio12')">🔊 Dengarkan Pesan</button>
         <audio id="audio12" src="kesan-pesan.mp3"></audio>
-        <span class="page-number">10</span>
+        <span class="page-number">11</span>
     </div>
 
     <div class="page cover" data-density="hard">
@@ -342,7 +356,7 @@
     // VARIABEL GLOBAL UNTUK PAGINATION
     let semuaTestimoni = [];
     let halamanTestimoniSaatIni = 1;
-    const itemPerHalaman = 3; // SEKARANG DIUBAH MENJADI 3 ITEM PER HALAMAN
+    const itemPerHalaman = 3; 
 
     document.addEventListener('DOMContentLoaded', function() {
         
@@ -364,14 +378,13 @@
         });
     });
 
-    // --- FUNGSI MENGAMBIL DATA DARI GOOGLE SHEETS ---
     function muatTestimoniDinamis() {
         fetch(scriptURL)
             .then(response => response.json())
             .then(data => {
                 semuaTestimoni = data;
-                halamanTestimoniSaatIni = 1; // Reset ke halaman pertama
-                renderDaftarTestimoni();     // Render datanya
+                halamanTestimoniSaatIni = 1; 
+                renderDaftarTestimoni();     
             })
             .catch(error => {
                 console.error('Gagal mengambil data testimoni:', error);
@@ -379,7 +392,6 @@
             });
     }
 
-    // --- FUNGSI MENGGAMBAR KOTAK TESTIMONI SESUAI HALAMAN ---
     function renderDaftarTestimoni() {
         const wadah = document.getElementById('tempat-testimoni');
         const kontrolPagination = document.getElementById('pagination-controls');
@@ -390,12 +402,10 @@
             return;
         }
 
-        // Tentukan batas potong (slice) array
         const indexMulai = (halamanTestimoniSaatIni - 1) * itemPerHalaman;
         const indexAkhir = indexMulai + itemPerHalaman;
         const testimoniYangDitampilkan = semuaTestimoni.slice(indexMulai, indexAkhir);
 
-        // Buat HTML Kotak-kotak Testimoni
         let html = '';
         testimoniYangDitampilkan.forEach(item => {
             html += `
@@ -408,7 +418,6 @@
         });
         wadah.innerHTML = html;
 
-        // Atur Tampilan Tombol Navigasi
         kontrolPagination.style.display = 'flex';
         const totalHalaman = Math.ceil(semuaTestimoni.length / itemPerHalaman);
         
@@ -417,7 +426,6 @@
         document.getElementById('btn-next').disabled = halamanTestimoniSaatIni === totalHalaman;
     }
 
-    // --- FUNGSI KETIKA TOMBOL NEXT/PREV DIKLIK ---
     function gantiHalamanTestimoni(arah) {
         halamanTestimoniSaatIni += arah;
         renderDaftarTestimoni();
@@ -476,8 +484,6 @@
             .then(response => {
                 document.getElementById('testimoni-form').style.display = 'none';
                 document.getElementById('pesan-sukses').style.display = 'block';
-                
-                // Ambil ulang data dari Google Sheet agar testimoni baru langsung masuk ke pagination
                 setTimeout(muatTestimoniDinamis, 1500); 
             })
             .catch(error => {
