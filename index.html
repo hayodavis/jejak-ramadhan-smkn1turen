@@ -19,7 +19,6 @@
             background-image: radial-gradient(circle at center, #334155 0%, #0f172a 100%);
         }
 
-        /* TOMBOL BGM MELAYANG */
         #bgm-btn {
             position: fixed;
             top: 25px;
@@ -44,7 +43,6 @@
             transform: scale(1.05);
         }
 
-        /* Panel Instruksi di area kosong kiri */
         .instruction-panel {
             position: absolute;
             left: 0;
@@ -60,57 +58,15 @@
             text-align: center;
             z-index: -1;
         }
+        .instruction-panel h3 { color: #fbbf24; font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 5px; }
+        .instruction-panel p.subtitle { color: #a7f3d0; font-size: 14px; margin-top: 0; margin-bottom: 25px; letter-spacing: 1px; }
+        .instruction-panel p.guide { color: #94a3b8; font-size: 12px; line-height: 1.5; margin-bottom: 12px; background: rgba(255, 255, 255, 0.05); padding: 10px 15px; border-radius: 8px; border: 1px dashed #475569; width: 100%; box-sizing: border-box; }
+        
+        .swipe-icon { font-size: 30px; color: #fbbf24; animation: swipeAnim 1.5s infinite alternate ease-in-out; margin-top: 10px; }
+        @keyframes swipeAnim { 0% { transform: translateX(10px); } 100% { transform: translateX(-15px); } }
 
-        .instruction-panel h3 {
-            color: #fbbf24;
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            margin-bottom: 5px;
-        }
+        .flip-book { width: 800px; height: 600px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
 
-        .instruction-panel p.subtitle {
-            color: #a7f3d0;
-            font-size: 14px;
-            margin-top: 0;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .instruction-panel p.guide {
-            color: #94a3b8;
-            font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px dashed #475569;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Animasi panah bergerak ke kiri */
-        .swipe-icon {
-            font-size: 30px;
-            color: #fbbf24;
-            animation: swipeAnim 1.5s infinite alternate ease-in-out;
-            margin-top: 10px;
-        }
-
-        @keyframes swipeAnim {
-            0% { transform: translateX(10px); }
-            100% { transform: translateX(-15px); }
-        }
-
-        .flip-book {
-            width: 800px;
-            height: 600px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
-        /* =========================================
-           GAYA HALAMAN & ORNAMEN
-           ========================================= */
         .page {
             background-color: #fdfbf7;
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V26H0v-2h20v-3.5zm-11-2.5l3.5-3.5L16 11V0h-2v11l-3.5 3.5L7 11V0H5v11l-3.5 3.5L5 18H0v2h5l3.5-3.5zM35 11l-3.5 3.5L28 11V0h2v11l3.5 3.5L37 11V0h2v11l-3.5 3.5L35 18h5v-2h-5zM9 28.5L5.5 32 2 28.5V40h2V28.5l3.5-3.5L11 28.5V40h2V28.5L9.5 25 6 28.5zM35 28.5L31.5 32 28 28.5V40h2V28.5l3.5-3.5L37 28.5V40h2V28.5L35.5 25 32 28.5z' fill='%23047857' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -123,244 +79,51 @@
             position: relative;
         }
 
-        .page::before {
-            content: "";
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 35px;
-            height: 35px;
-            border-top: 2px solid #059669;
-            border-left: 2px solid #059669;
-            border-top-left-radius: 6px;
-            pointer-events: none;
-            opacity: 0.7;
-        }
-        .page::after {
-            content: "";
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            border-bottom: 2px solid #fbbf24;
-            border-right: 2px solid #fbbf24;
-            border-bottom-right-radius: 6px;
-            pointer-events: none;
-            opacity: 0.8;
-        }
-
-        .page.cover::before, .page.cover::after {
-            display: none;
-        }
-
+        .page::before { content: ""; position: absolute; top: 15px; left: 15px; width: 35px; height: 35px; border-top: 2px solid #059669; border-left: 2px solid #059669; border-top-left-radius: 6px; pointer-events: none; opacity: 0.7; }
+        .page::after { content: ""; position: absolute; bottom: 15px; right: 15px; width: 35px; height: 35px; border-bottom: 2px solid #fbbf24; border-right: 2px solid #fbbf24; border-bottom-right-radius: 6px; pointer-events: none; opacity: 0.8; }
+        .page.cover::before, .page.cover::after { display: none; }
         .page.--left { border-right: 0; box-shadow: inset -10px 0 40px -10px rgba(0,0,0,0.15); }
         .page.--right { border-left: 0; box-shadow: inset 10px 0 40px -10px rgba(0,0,0,0.15); }
 
-        .cover {
-            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
-            color: #ecfdf5;
-            text-align: center;
-        }
+        .cover { background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); color: #ecfdf5; text-align: center; }
+        .cover-inner { border: 2px solid #fbbf24; outline: 1px solid #fbbf24; outline-offset: -6px; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px 40px 20px; box-sizing: border-box; }
+        .page.full-cover { padding: 0; border: none; background-color: #064e3b; }
+        .full-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .cover-inner {
-            border: 2px solid #fbbf24;
-            outline: 1px solid #fbbf24;
-            outline-offset: -6px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px 40px 20px; 
-            box-sizing: border-box;
-        }
+        h2.title { font-family: 'Playfair Display', serif; color: #047857; text-align: center; font-size: 21px; margin-top: 5px; margin-bottom: 20px; position: relative; }
+        h2.title::after { content: "✦ ✧ ✦"; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #fbbf24; letter-spacing: 4px; opacity: 0.8; }
+        p { font-size: 13px; line-height: 1.7; color: #334155; text-align: justify; font-weight: 300; }
 
-        .page.full-cover {
-            padding: 0;
-            border: none;
-            background-color: #064e3b;
-        }
-        
-        .full-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .image-placeholder { background: #ffffff; padding: 8px; border-radius: 4px; margin-top: auto; margin-bottom: 15px; flex-grow: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; position: relative; z-index: 2; }
+        .image-placeholder img, .image-placeholder iframe, .image-placeholder video { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
 
-        h2.title {
-            font-family: 'Playfair Display', serif;
-            color: #047857;
-            text-align: center;
-            font-size: 21px;
-            margin-top: 5px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        h2.title::after {
-            content: "✦ ✧ ✦";
-            position: absolute;
-            bottom: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 11px;
-            color: #fbbf24;
-            letter-spacing: 4px;
-            opacity: 0.8;
-        }
-
-        p {
-            font-size: 13px;
-            line-height: 1.7;
-            color: #334155;
-            text-align: justify;
-            font-weight: 300;
-        }
-
-        .image-placeholder {
-            background: #ffffff;
-            padding: 8px;
-            border-radius: 4px;
-            margin-top: auto;
-            margin-bottom: 15px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
-            position: relative;
-            z-index: 2; 
-        }
-        .image-placeholder img,
-        .image-placeholder iframe,
-        .image-placeholder video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        /* =========================================
-           STYLING DAFTAR ISI INTERAKTIF
-           ========================================= */
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 25px;
-        }
-        .toc-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 15px;
-            font-size: 13px;
-            color: #334155;
-            font-weight: 600;
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-            padding: 5px 0;
-        }
-        
-        .toc-item:hover {
-            color: #059669; 
-            transform: translateX(5px); 
-        }
-        .toc-item:hover .toc-page {
-            color: #f59e0b; 
-        }
-
+        .toc-list { list-style: none; padding: 0; margin-top: 25px; }
+        .toc-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-size: 13px; color: #334155; font-weight: 600; cursor: pointer; transition: all 0.2s ease; padding: 5px 0; }
+        .toc-item:hover { color: #059669; transform: translateX(5px); }
+        .toc-item:hover .toc-page { color: #f59e0b; }
         .toc-title { padding-right: 5px; z-index: 1; pointer-events: none; }
         .toc-page { padding-left: 5px; z-index: 1; color: #047857; font-family: 'Playfair Display', serif; font-weight: bold; pointer-events: none; transition: color 0.2s ease; }
         .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; pointer-events: none; }
 
-        button.play-audio {
-            background: linear-gradient(to right, #059669, #047857);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            align-self: flex-start;
-            box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            z-index: 2;
-        }
-        button.play-audio:hover {
-            background: linear-gradient(to right, #047857, #064e3b);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(5, 150, 105, 0.4);
-        }
+        /* KOTAK TESTIMONI */
+        .testimonial-box { background: rgba(4, 120, 87, 0.05); border-left: 4px solid #fbbf24; padding: 15px; margin-bottom: 15px; border-radius: 4px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .quote-icon { font-size: 24px; color: #fbbf24; position: absolute; top: 5px; left: 10px; opacity: 0.5; font-family: serif; }
+        .testimonial-text { font-size: 12px; font-style: italic; color: #475569; margin-bottom: 8px; margin-top: 0; padding-left: 20px; line-height: 1.6; }
+        .testimonial-author { font-size: 11px; font-weight: 600; color: #047857; text-align: right; margin: 0; }
 
-        .page-number {
-            position: absolute;
-            bottom: 20px;
-            font-size: 12px;
-            color: #94a3b8;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-        }
+        button.play-audio { background: linear-gradient(to right, #059669, #047857); color: white; border: none; padding: 10px 18px; border-radius: 25px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.3s ease; align-self: flex-start; box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3); font-family: 'Poppins', sans-serif; position: relative; z-index: 2; }
+        button.play-audio:hover { background: linear-gradient(to right, #047857, #064e3b); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(5, 150, 105, 0.4); }
+
+        .page-number { position: absolute; bottom: 20px; font-size: 12px; color: #94a3b8; font-family: 'Playfair Display', serif; font-weight: bold; }
         .page.--left .page-number { left: 25px; }
         .page.--right .page-number { right: 25px; }
 
-        /* =========================================
-           STYLE FORM COVER BELAKANG
-           ========================================= */
-        .form-wrapper {
-            position: relative;
-            z-index: 100;
-            pointer-events: auto;
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid rgba(251, 191, 36, 0.3); 
-            padding: 15px; 
-            border-radius: 8px; 
-            width: 100%; 
-            box-sizing: border-box;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            background: rgba(255,255,255,0.9);
-            box-sizing: border-box;
-            position: relative;
-            z-index: 101; 
-        }
-        
-        .form-input:focus {
-            outline: 2px solid #fbbf24;
-        }
-
-        .submit-btn {
-            background: linear-gradient(to right, #fbbf24, #f59e0b); 
-            color: #064e3b; 
-            font-weight: bold; 
-            border: none; 
-            padding: 10px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-family: 'Poppins', sans-serif; 
-            font-size: 12px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            width: 100%;
-            position: relative;
-            z-index: 101;
-            transition: all 0.2s ease;
-        }
-        .submit-btn:hover {
-            transform: scale(1.02);
-        }
+        /* FORM COVER BELAKANG */
+        .form-wrapper { position: relative; z-index: 100; pointer-events: auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(251, 191, 36, 0.3); padding: 15px; border-radius: 8px; width: 100%; box-sizing: border-box; }
+        .form-input { width: 100%; padding: 10px; border-radius: 5px; border: none; font-family: 'Poppins', sans-serif; font-size: 12px; background: rgba(255,255,255,0.9); box-sizing: border-box; position: relative; z-index: 101; }
+        .form-input:focus { outline: 2px solid #fbbf24; }
+        .submit-btn { background: linear-gradient(to right, #fbbf24, #f59e0b); color: #064e3b; font-weight: bold; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); width: 100%; position: relative; z-index: 101; transition: all 0.2s ease; }
+        .submit-btn:hover { transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -406,6 +169,7 @@
             <li class="toc-item" onclick="bukaHalaman(9)"><span class="toc-title">Pondok Kasih</span><span class="toc-dots"></span><span class="toc-page">7</span></li>
             <li class="toc-item" onclick="bukaHalaman(10)"><span class="toc-title">Renungan</span><span class="toc-dots"></span><span class="toc-page">8</span></li>
             <li class="toc-item" onclick="bukaHalaman(11)"><span class="toc-title">Jejak Bergerak</span><span class="toc-dots"></span><span class="toc-page">9</span></li>
+            <li class="toc-item" onclick="bukaHalaman(12)"><span class="toc-title">Kesan & Pesan</span><span class="toc-dots"></span><span class="toc-page">10</span></li>
         </ul>
         <span class="page-number">II</span>
     </div>
@@ -511,6 +275,21 @@
         <span class="page-number">9</span>
     </div>
 
+    <div class="page">
+        <h2 class="title">Kesan & Pesan</h2>
+        <p style="margin-bottom: 15px;">Beberapa rekam jejak kebaikan dan dukungan yang telah ditinggalkan oleh para pembaca untuk inovasi siswa-siswi kami.</p>
+
+        <div id="tempat-testimoni">
+            <p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic; margin-top: 50px;">
+                Mengambil data terbaru... ⏳
+            </p>
+        </div>
+
+        <audio id="audio12" src="kesan-pesan.mp3"></audio>
+        <button class="play-audio" onclick="putarAudio('audio12')" style="margin-top: auto;">🔊 Dengarkan Pesan</button>
+        <span class="page-number">10</span>
+    </div>
+
     <div class="page cover" data-density="hard">
         <div class="cover-inner">
             <h2 style="font-size: 26px; font-style: normal; font-family: 'Playfair Display', serif; color: #fbbf24; margin-top: 0;">Mari Berbagi Jejak</h2>
@@ -550,9 +329,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
 <script>
+    // --- GANTI URL DI BAWAH INI DENGAN URL APPS SCRIPT ANDA ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwA0FnahxbJy443sbtxwyhRHBpNbv4MPvxKNv6emV-gJ-HlTXDDC2rBRmIS4rkz3BWa/exec'; 
     let pageFlip;
 
     document.addEventListener('DOMContentLoaded', function() {
+        
+        // 1. Panggil fungsi untuk mengambil data testimoni dari Google Sheets
+        muatTestimoniDinamis();
+
+        // 2. Jalankan Buku Digital
         pageFlip = new St.PageFlip(document.getElementById('book'), {
             width: 400, height: 600, size: "fixed",
             minWidth: 300, maxWidth: 500, minHeight: 400, maxHeight: 700,
@@ -560,10 +346,6 @@
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-        // PENYELESAIAN BUG GESER (SWIPE):
-        // Kita hanya memblokir interaksi sentuh pada wadah form (form-wrapper)
-        // agar pengguna bisa mengetik tanpa membalik halaman secara tidak sengaja.
-        // Area Daftar Isi kita biarkan natural agar tetap bisa di-swipe.
         const formElements = document.querySelectorAll('.form-wrapper');
         formElements.forEach(el => {
             el.addEventListener('mousedown', (e) => e.stopPropagation());
@@ -572,7 +354,38 @@
         });
     });
 
-    // --- FUNGSI NAVIGASI DAFTAR ISI ---
+    // --- FUNGSI MENGAMBIL DATA DARI GOOGLE SHEETS ---
+    function muatTestimoniDinamis() {
+        fetch(scriptURL)
+            .then(response => response.json())
+            .then(data => {
+                const wadah = document.getElementById('tempat-testimoni');
+                wadah.innerHTML = ''; // Hapus teks loading
+
+                if(data.length === 0) {
+                    wadah.innerHTML = '<p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic;">Belum ada jejak yang ditinggalkan. Jadilah yang pertama!</p>';
+                    return;
+                }
+
+                // Render setiap data menjadi kotak testimoni
+                let html = '';
+                data.forEach(item => {
+                    html += `
+                    <div class="testimonial-box">
+                        <span class="quote-icon">❝</span>
+                        <p class="testimonial-text">"${item.pesan}"</p>
+                        <p class="testimonial-author">- ${item.nama}</p>
+                    </div>
+                    `;
+                });
+                wadah.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Gagal mengambil data testimoni:', error);
+                document.getElementById('tempat-testimoni').innerHTML = '<p style="text-align:center; font-size:12px; color:red;">Gagal memuat pesan terbaru. Periksa koneksi internet Anda.</p>';
+            });
+    }
+
     function bukaHalaman(indeksHalaman) {
         if (pageFlip) {
             pageFlip.flip(indeksHalaman);
@@ -612,7 +425,6 @@
         }
     }
 
-    // --- FUNGSI FORM TESTIMONI ---
     function kirimTestimoni(event) {
         event.preventDefault(); 
         
@@ -623,8 +435,6 @@
         btn.innerHTML = "Mengirim... ⏳";
         btn.disabled = true;
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwA0FnahxbJy443sbtxwyhRHBpNbv4MPvxKNv6emV-gJ-HlTXDDC2rBRmIS4rkz3BWa/exec'; 
-
         let formData = new FormData();
         formData.append('nama', nama);
         formData.append('pesan', pesan);
@@ -633,6 +443,9 @@
             .then(response => {
                 document.getElementById('testimoni-form').style.display = 'none';
                 document.getElementById('pesan-sukses').style.display = 'block';
+                
+                // Opsional: Reload data testimoni secara diam-diam setelah sukses mengirim
+                setTimeout(muatTestimoniDinamis, 2000); 
             })
             .catch(error => {
                 console.error('Error!', error.message);
