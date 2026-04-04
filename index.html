@@ -77,7 +77,7 @@
         .toc-dots { flex-grow: 1; border-bottom: 1px dotted #94a3b8; margin: 0 5px; position: relative; top: -4px; pointer-events: none; }
 
         /* KOTAK TESTIMONI */
-        .testimonial-box { background: rgba(4, 120, 87, 0.05); border-left: 4px solid #fbbf24; padding: 12px; margin-bottom: 10px; border-radius: 4px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .testimonial-box { background: rgba(4, 120, 87, 0.05); border-left: 4px solid #fbbf24; padding: 12px; margin-bottom: 15px; border-radius: 4px; position: relative; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
         .quote-icon { font-size: 20px; color: #fbbf24; position: absolute; top: 5px; left: 10px; opacity: 0.5; font-family: serif; }
         .testimonial-text { font-size: 11px; font-style: italic; color: #475569; margin-bottom: 6px; margin-top: 0; padding-left: 18px; line-height: 1.5; }
         .testimonial-author { font-size: 10px; font-weight: 600; color: #047857; text-align: right; margin: 0; }
@@ -279,7 +279,7 @@
         <h2 class="title">Kesan & Pesan</h2>
         <p style="margin-bottom: 15px;">Beberapa rekam jejak kebaikan dan dukungan yang telah ditinggalkan oleh para pembaca untuk inovasi siswa-siswi kami.</p>
 
-        <div id="tempat-testimoni" style="min-height: 350px;">
+        <div id="tempat-testimoni" style="min-height: 280px;">
             <p style="text-align:center; font-size:12px; color:#94a3b8; font-style:italic; margin-top: 50px;">
                 Mengambil data terbaru... ⏳
             </p>
@@ -342,7 +342,7 @@
     // VARIABEL GLOBAL UNTUK PAGINATION
     let semuaTestimoni = [];
     let halamanTestimoniSaatIni = 1;
-    const itemPerHalaman = 5;
+    const itemPerHalaman = 3; // SEKARANG DIUBAH MENJADI 3 ITEM PER HALAMAN
 
     document.addEventListener('DOMContentLoaded', function() {
         
